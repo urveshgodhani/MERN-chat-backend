@@ -113,15 +113,16 @@ exports.addToGroup = async (req, res, next) => {
   try {
     const { chatId, userId } = req.body;
 
-    const added = await Chat.findByIdAndUpdate(
-      chatId,
-      {
-        $push: { users: userId },
-      },
-      {
-        new: true,
-      }
-    )
+    const added = await chat
+      .findByIdAndUpdate(
+        chatId,
+        {
+          $push: { users: userId },
+        },
+        {
+          new: true,
+        }
+      )
       .populate("users", "-password")
       .populate("groupAdmin", "-password");
 
@@ -137,16 +138,16 @@ exports.addToGroup = async (req, res, next) => {
 exports.removeFromGroup = async (req, res, next) => {
   const { chatId, userId } = req.body;
 
-
-  const removed = await Chat.findByIdAndUpdate(
-    chatId,
-    {
-      $pull: { users: userId },
-    },
-    {
-      new: true,
-    }
-  )
+  const removed = await chat
+    .findByIdAndUpdate(
+      chatId,
+      {
+        $pull: { users: userId },
+      },
+      {
+        new: true,
+      }
+    )
     .populate("users", "-password")
     .populate("groupAdmin", "-password");
 
@@ -157,3 +158,6 @@ exports.removeFromGroup = async (req, res, next) => {
     res.json(removed);
   }
 };
+
+
+//write prime number
