@@ -1,5 +1,5 @@
-const chat = require("../models/chatModel");
-const user = require("../models/userModel");
+const chat = require("../../models/chatModel");
+const user = require("../../models/userModel");
 var mongoose = require("mongoose");
 
 exports.accessChat = async (req, res, next) => {
@@ -158,6 +158,5 @@ exports.removeFromGroup = async (req, res, next) => {
     res.json(removed);
   }
 };
-
 
 //write prime number
